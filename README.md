@@ -29,9 +29,15 @@ Having a DataFrame with many columns will not be helpful to a clustering algorit
 ## Clustering with K-Means
 With the new DataFrame ready for clustering, the next step is to determine the best number of clusters by observing an elbow curve. This is done by fitting the PCA DataFrame into the K-Means algorithm multiple times from one cluster to 10 clusters (all at random state 1). The inertia of each result is put into a list which is matched to the K-value in a DataFrame to be plotted into an elbow curve with `hvplot`.
 
+![Elbow Curve](https://github.com/Owen-Wang1234/Cryptocurrencies/blob/main/ElbowCurve.png)
+
 Looking at the curve, the best number is determined to be 4, so the PCA data is finally fitted into K-Means model with 4 clusters (random state 1) to yield a set of predictions. One clustered DataFrame is formed by combining the cleaned pre-encoded DataFrame with the PCA DataFrame and the names DataFrame and appending the list of class predictions.
 
 ## Visualizing the Results
 The clustered DataFrame is immediately plotted into a 3D scatter plot with `plotly`. Each principal component is set to an axis, each predicted class is noted by color and shape of the data point, and hovering over the point shows the name of the cryptocurrency and the algorithm used.
 
+![PCA Scatter Plot](https://github.com/Owen-Wang1234/Cryptocurrencies/blob/main/PCA3DScatter.png)
+
 Hvplot is used to produce a table from the clustered DataFrame. A quick check shows that there are 532 tradable cryptocurrencies used throughout this project. The columns for the coin supply and the coins mined are fitted and transformed with a MinMaxScaler method to scale the values between zero and one. The results form a DataFrame with the name and predicted class to be used for plotting. The `hvplot` scatter plot sets the number of coins mined to the x-axis and the total coin supply to the y-axis, colors the data points by their predicted class, and shows the name of the cryptocurrency when hovering the cursor over the point.
+
+![Cryptocurrency Scatter Plot](https://github.com/Owen-Wang1234/Cryptocurrencies/blob/main/CryptoScatter.png)
